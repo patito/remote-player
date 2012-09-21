@@ -13,13 +13,14 @@ class RemotePlayerFTP:
 
 	def connect(self):
 		try:
-			self.__ftp = FTP(self.__server, self.__login, self.__password)
+			self.__ftp = FTP(self.__server, self.__user, self.__password)
 		except:
 			print "Can't connect in server: " + self.__server + " with user: " + self.__user
 			sys.exit()
 	
 	def listfiles(self):
 		print "listing files..."
+		self.__ftp.retrlines('NLST')
 
 	def server(self):
 		return self.__server
