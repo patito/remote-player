@@ -19,8 +19,7 @@ class RemotePlayerFTP:
 			sys.exit()
 	
 	def listfiles(self):
-		print "listing files..."
-		self.__ftp.retrlines('NLST')
+		return self.__ftp.nlst()
 
 	def server(self):
 		return self.__server
@@ -30,6 +29,3 @@ class RemotePlayerFTP:
 
 	def password(self):
 		return self.__password
-			
-#rpftp = RemotePlayerFTP("192.168.160.191", "patito", "patito")
-#rpftp.connect();
