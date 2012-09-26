@@ -115,7 +115,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
-                <signal name="clicked" handler="on_btclean_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_btconnect_clicked" swapped="no"/>
               </widget>
               <packing>
                 <property name="left_attach">2</property>
@@ -148,13 +148,9 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkScrolledWindow" id="scrolledwindow1">
+          <widget class="GtkTreeView" id="listview">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hadjustment">0 0 100 1 2 10</property>
-            <child>
-              <placeholder/>
-            </child>
           </widget>
           <packing>
             <property name="expand">True</property>

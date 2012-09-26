@@ -17,8 +17,6 @@ except:
 
 class RemotePlayerInterface:
         def __init__(self):
-                #Set the Glade file
-		#self.__ftp = rpftp
                 dic = { "gtk_main_quit" : gtk.main_quit }
                 self.gladefile = "../interface/rpinterface.glade"
                 self.wTree = gtk.glade.XML(self.gladefile)
@@ -33,7 +31,7 @@ class RemotePlayerInterface:
 			"on_btpause_clicked" : self.on_btpause_clicked,
 			"on_btstop_clicked" : self.on_btstop_clicked}
                 self.wTree.signal_autoconnect(dic)
-                
+	
 
         def on_btconnect_clicked(self, widget):
 		self.__server = self.wTree.get_widget("enserver").get_text()
@@ -41,6 +39,26 @@ class RemotePlayerInterface:
 		self.__password = self.wTree.get_widget("enpassword").get_text()
 		self.__ftp = RemotePlayerFTP(self.__server, self.__user, self.__password)
 		self.__ftp.connect()
+		songs = self.__ftp.listfiles()
+
+		store = gtk.ListStore(str)
+		for x in range(len(songs)):
+			store.append([songs[x]])
+		self.__playerViewer = self.wTree.get_widget("listview")
+		self.__playerViewer.__init__(store)
+
+		column = gtk.TreeViewColumn("Nome")
+
+		title = gtk.CellRendererText()
+		author = gtk.CellRendererText()
+
+		column.pack_start(title, True)
+		column.pack_start(author, True)
+
+		column.add_attribute(title, "text", 0)
+		column.add_attribute(author, "text", 1)
+
+		self.__playerViewer.append_column(column)
                 print "btconnect"
 
         def on_btclean_clicked(self, widget):
