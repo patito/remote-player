@@ -51,6 +51,9 @@ class RemotePlayerPipeline:
 			self.__pipeline.get_by_name("gvfs-source").set_property("location", songs[self.__pos])
 			self.__pipeline.set_state(gst.STATE_PLAYING)
 
+	def stop(self):
+		self.__pipeline.set_state(gst.STATE_NULL)
+
 	def __done__(self):
 		print "done"
 
