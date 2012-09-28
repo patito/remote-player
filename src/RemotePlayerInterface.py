@@ -88,9 +88,10 @@ class RemotePlayerInterface:
 			self.__pipeline.start(self.song_name)
 			
         def item_selected(self, widget):
-			print self.__playerViewer.get_selected()
-			print "boo"
-
-if __name__ == "__main__":
-        hwg = RemotePlayerInterface()
-        gtk.main()
+			#print self.__playerViewer.get_selection().get_selected_rows()
+			model, pathlist = self.__playerViewer.get_selection().get_selected_rows()
+			print pathlist[0][0]
+    		#for path in pathlist :
+        	#tree_iter = model.get_iter(path)
+        	#value = model.get_value(tree_iter,0)
+        	#print value

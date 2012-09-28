@@ -1,10 +1,6 @@
-from RemotePlayerFTP import *
-from RemotePlayerPipeline import *
-import gobject
+from RemotePlayerInterface import *
+import gtk
 
-mainloop = gobject.MainLoop()
-rpftp = RemotePlayerFTP("192.168.25.13", "patito", "patito")
-rpp = RemotePlayerPipeline(rpftp)
-rpftp.connect()
-rpp.start()
-mainloop.run()
+if __name__ == "__main__":
+	hwg = RemotePlayerInterface()
+	gtk.main()
